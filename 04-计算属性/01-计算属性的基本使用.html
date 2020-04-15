@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{firstName + ' ' + lastName}}</h2>
+        <h2>{{firstName}} {{lastName}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>总价格: {{totalPrice}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Lebron',
+                lastName: 'James',
+                books:[
+                    {id: 110, name: 'linux', price: 119},
+                    {id: 111, name: 'nginx', price: 22},
+                    {id: 112, name: 'java', price: 33},
+                    {id: 113, name: 'Spring', price: 44},
+                    {id: 114, name: 'SpringCloud', price: 55}
+                ]
+            },
+            // 计算属性(有缓存只算一次)
+            computed: {
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                //filter, map, reduce
+                totalPrice:function(){
+                    // return this.books.reduce();
+                    let result = 0;
+                    for(let i = 0; i < this.books.length; i++){
+                        result += this.books[i].price;
+                    }
+                    return result;
+
+                    // for(let i in thsi.books){
+
+                    // }
+
+                    // for(let book of this.books){
+                        
+                    // }
+                }
+            },
+            methods: {
+                getFullName: function () {
+                    return this.firstName + ' ' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

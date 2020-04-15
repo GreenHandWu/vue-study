@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>当前计数:{{counter}}</h2>
+        <!-- <button v-on:click="counter--">-</button> -->
+        <!-- <button v-on:click="counter++">+</button> -->
+        <button v-on:click="sub">-</button>
+        <button @click="add">+</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //语法糖：简写@click = v-on:click
+        const app = new Vue({
+            el: '#app',//用于挂载要管理的元素
+            // el:document.querySelector()
+            data: {//定义数据
+                counter: 0
+            },
+            methods: {
+                add: function () {
+                    console.log('add被执行');
+                    //this当前对象的counter，不加入的话则查找全局的。proxy会将data中数据加入到app中
+                    this.counter++;
+                },
+                sub: function () {
+                    console.log('sub被执行');
+                    this.counter--;
+                }
+            },
+            beforeCreate: function () {
+                console.log('beforeCreate');
+            },
+            created: function () {
+                console.log('created');
+            },
+            mounted: function () {
+                console.log('mounted');
+            }
+        })
+        //js元素操作
+        //1.拿button元素
+        //2.添加监听事件
+    </script>
+</body>
+
+</html>

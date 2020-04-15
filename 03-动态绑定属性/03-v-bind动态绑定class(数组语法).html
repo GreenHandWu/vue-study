@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 没有单引号会当成变量解析 -->
+        <h2 class="title" :class="['active','line']">{{message}}</h2>
+        <h2 class="title" :class="[active,line]">{{message}}</h2>
+        <h2 class="title" :class="getClasses()">{{message}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊',
+                active: 'aaa',
+                line: 'bbb'
+            },
+            methods: {
+                getClasses: function () {
+                    return [this.active, this.line];
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
