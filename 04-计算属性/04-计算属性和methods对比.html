@@ -8,9 +8,16 @@
 
 <body>
     <div id="app">
-        <h2>{{firstName + ' ' + lastName}}</h2>
+        <!-- 1.直接拼接 语法过于繁琐-->
         <h2>{{firstName}} {{lastName}}</h2>
+        <!-- 2.通过定义methods 没有缓存性能低-->
         <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+
+        <!-- 通过computed -->
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
         <h2>{{fullName}}</h2>
     </div>
     <script src="../js/vue.js"></script>
@@ -21,14 +28,15 @@
                 firstName: 'Lebron',
                 lastName: 'James'
             },
-            // 计算属性(有缓存只算一次)
             computed: {
                 fullName: function () {
+                    console.log('fullName')
                     return this.firstName + ' ' + this.lastName
                 }        
             },
             methods: {
                 getFullName: function () {
+                    console.log('getFullName')
                     return this.firstName + ' ' + this.lastName
                 }
             }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 实际使用的是get方法 -->
+        <h2>{{fullname}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Lebron',
+                lastName: 'James'
+            },
+            computed:{
+                // fullname:function(){
+                //     return this.firstName + ' ' + this.lastName
+                // }
+                // name:'coderwhy'
+                fullname:{
+                    //计算属性一般是没有set方法，只读属性。
+                    set:function(newValue){
+                        // app.fullname = '123 aa'
+                        console.log('set方法'+newValue);
+                        const names = newValue.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                    },
+                    get:function(){
+                        return this.firstName + ' ' + this.lastName
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
